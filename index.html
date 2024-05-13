@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Página para generar códigos QR adicionalmente juego para encriptar y desencriptar texto">
+    <title>QR Matrix</title>
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://qrmatrix.cgwis.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="QR Matrix">
+    <meta property="og:description"
+        content="Página para generar códigos QR adicionalmente juego para encriptar y desencriptar texto">
+    <meta property="og:image" content="./img/qrRedes1200.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="qrmatrix.cgwis.com">
+    <meta property="twitter:url" content="https://qrmatrix.cgwis.com">
+    <meta name="twitter:title" content="QR Matrix">
+    <meta name="twitter:description"
+        content="Página para generar códigos QR adicionalmente juego para encriptar y desencriptar texto">
+    <meta name="twitter:image" content="./img/qrRedes1200.png">
+
+
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/favicons/favicon192x192.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./img/favicons/favicon96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon16x16.png">
+    <meta name="msapplication-TileImage" content="./img/favicons/favicon144x144.png">
+    <link rel="icon" type="image/x-icon" href="./img/favicons/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./img/favicons/favicon.ico">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./plugins/jsQR.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        onerror="loadLocalLibrary()"></script>
+    <script>
+        function loadLocalLibrary() {
+            var script = document.createElement('script');
+            script.src = './plugins/qrcode.min.js';
+            document.head.appendChild(script);
+        }
+    </script>
+
+</head>
+
+<body>
+    <canvas id="canvasEfect" class="canvasEfect"></canvas>
+
+    <main class="wrap">
+        <button id="stopButton">Detener</button>
+        <button class="goEncrypt" id="goEncrypt">Generar QR</button>
+        <section class="encryptConteiner">
+            <p>Encriptador</p>
+            <div class="scanConteiner">
+                <div class="buttonsScan">
+                    <button id="flashlightButton" class="floating-button none"><img class="floating-button-img"
+                            src="./img/linternaOn.png" alt="Imagen de linterna"></button>
+                    <button class="buttonScanner"><img class="buttonScannerImagen" src="./img/scanQRicon.png"
+                            alt="Imagen de qr"></button>
+                    <label for="imageInput" class="custom-file-input" title="Subir imagen">
+                        <img src="./img/subirImagen.png" alt="Seleccionar archivo">
+                    </label>
+                    <input type="file" id="imageInput" style="display:none;">
+                </div>
+                <canvas id="qr-canvas" class="img-fluid"></canvas>
+                <textarea class="input" id="input" placeholder="Ingrese el texto aquí"></textarea>
+            </div>
+            <div class="buttons" id="buttonsEncrypt">
+                <button class="encrypt">Encriptar</button>
+                <button class="decrypt">Desencriptar</button>
+            </div>
+            <div class="output" id="output"><span class="outputSpan"></span></div>
+            <button class="copy none" id="closed">Cerrar</button>
+            <button class="copy" id="copy">Copiar</button>
+        </section>
+
+        <section class="QRConteiner">
+            <p>Genera tu QR</p>
+            <div class="selectUrl">
+                <select name="select" id="selectQr" class="selectQr" title="Selecciona el tipo de códigos">
+                    <option value="text" translate="no">Texto</option>
+                    <option value="http://" translate="no">http://</option>
+                    <option value="https://" translate="no">https://</option>
+                </select>
+                <textarea type="text" class="inputQr" id="inputQr" spellcheck="false"
+                    placeholder="Ingresa tu sitio web o texto aquí"></textarea>
+            </div>
+            <div class="outputQr" id="outputQr" translate="no">
+                <span id="outputQrSpan" class="outputQrSpan"></span>
+                <a href="" id="linkQr" target=""></a>
+            </div>
+            <button class="buttonGenerateQr" id="buttonGenerateQr">Genera QR</button>
+            <div id="containerQr" class="containerQr"></div>
+            <div id="qrImageContainer" class="qrImageContainer"></div>
+            <button class="buttondownload" id="buttondownload">Descargar</button>
+        </section>
+    </main>
+    <audio id="audioScaner" src="sonido.mp3"></audio>
+    <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>

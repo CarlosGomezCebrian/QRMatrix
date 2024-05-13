@@ -1,0 +1,711 @@
+:root {
+    /* Definición de variables CSS */
+    --color-green: #32ff32;
+    --color-grey: #333;
+    --font-size-medium: 16px;
+    /* Otras propiedades globales */
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+  }
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    position: relative;
+    font-family: "Courier New", Consolas, "Lucida Console", Courier, monospace;
+}
+.canvasEfect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+button{
+    width: 12rem;
+    height: 2.5rem;
+    padding: .5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bolder;    
+    font-family: "Courier New", Consolas, "Lucida Console", Courier, monospace;
+}
+
+#stopButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--color-grey);
+    color:var(--color-green);
+    width: 6rem;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.goEncrypt{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 10%;
+    left: 50%;
+    background-color: var(--color-grey);
+    color:var(--color-green);
+    font-size: 1rem;
+    width: 10rem;
+    z-index: 1;
+}
+
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+      
+
+
+.encryptConteiner{
+    position: absolute;
+    display: flex;
+    width: 50rem;
+    height: 30.9rem;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid white;
+    border-radius: 2rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem ;
+    justify-content: space-around;
+    transition: background-color 0.5s ease;
+}
+
+.QRConteiner{
+    position: absolute;
+    width: 50rem;
+    height: 30.9rem;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem ;
+    justify-content: space-around;
+    transition: background-color 0.5s ease;
+}
+
+.QRConteiner p, .encryptConteiner p {
+    color: white;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+
+.input{
+    width: 38rem;
+    height: 6rem;
+    font-size: 2rem;
+    color: var(--color-green);
+    outline: none;
+    background-color: #333333b3;
+    border: 3px solid var(--color-green);
+    resize: none;
+}
+
+.output {
+    width: 38rem;
+    height: 6rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: cyan;
+    outline: none;
+    background-color: #333333b3;
+    border: 3px solid var(--color-green);
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: space-around;
+    resize: none;
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+
+.input:focus{
+    outline: none;
+    border: 3px solid yellow;
+}
+
+
+
+.input::-webkit-scrollbar, .output::-webkit-scrollbar {
+    width: 3px; 
+}
+
+.input::-webkit-scrollbar-track, .output::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.input::-webkit-scrollbar-thumb, .output::-webkit-scrollbar-thumb {
+    background-color: var(--color-green); 
+    cursor: pointer;
+}
+
+.encrypt, .copy{
+    background-color: var(--color-grey);
+    color: var(--color-green);
+}
+
+.encrypt:hover, .copy:hover, .encrypt:focus, .copy:focus{
+    background-color: var(--color-green);
+    color: var(--color-grey);
+    font-weight: bolder;
+    transition: all .6s ease;
+}
+
+.decrypt{
+    background-color: var(--color-green);
+    color: var(--color-grey);
+}
+
+.decrypt:hover, .decrypt:focus{
+    background-color: var(--color-grey);
+    color: var(--color-green);
+    transition: all .6s ease;
+}
+
+.encrypt:active, .decrypt:active, .copy:active{
+    background-color: yellow;
+    
+}
+
+
+
+/**CSS QR generator**/
+
+.selectUrl{
+    display: flex;
+    justify-content: center;
+
+} 
+
+.selectQr{
+    margin: 0;
+    width: 9rem;
+    height: 2.5rem;    
+    border: 3px solid var(--color-green);
+    border-right: 0;
+    color: var(--color-green);
+    outline: none;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #333333b3;
+}
+
+
+.inputQr{
+    margin: 0;
+    width: 32rem;
+    height: 2.5rem;
+    border: 3px solid var(--color-green);
+    border-left: 0;
+    color: var(--color-green);
+    outline: none;
+    font-size: 1.5rem;
+    background-color: #333333b3; 
+    font-family: "Courier New", Consolas, "Lucida Console", Courier, monospace;  
+
+}
+
+.selectQr:focus {
+    border: 3px solid yellow;
+    border-right: 0;
+}
+
+.selectQr:focus + .inputQr{
+    border: 3px solid yellow;
+    border-left: 0;
+}
+
+
+.inputQr:focus  {
+    border: 3px solid yellow;
+    border-left: 0;
+}
+
+.selectQr.focused{
+    border: 3px solid yellow;
+    border-right: 0;
+}
+
+.outputQr{
+    display: flex;
+    justify-content: flex-end;
+    width: 41rem;
+    height: 2.5rem;
+    border: 3px solid var(--color-green);
+    color: #565656;
+    outline: none;
+    font-size: 1.5rem;
+    background-color: #333333b3;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.outputQrSpan{
+    width: 32rem;    
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.outputQr a{ 
+    display: none;
+    width: 9rem;   
+    text-decoration:none;
+    background-color:transparent;
+    padding: .3rem;
+    font-weight: bolder;
+    color: var(--color-green); 
+    border: 1px solid var(--color-green); 
+    transition: all .6s ease;
+    font-size: 1rem;
+    overflow: hidden;
+
+}
+
+.containerQr {
+    display: none;
+    width: 15rem;
+    height: 15rem;
+    background-color: white;
+    border: 3px solid var(--color-green);
+    align-items: center; 
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.containerQr canvas {
+    max-width: 100%; /* Esto asegura que el canvas no sea más ancho que su contenedor */
+    max-height: 100%; /* Esto asegura que el canvas no sea más alto que su contenedor */
+    display: block; /* Para eliminar el espacio en blanco debajo del canvas */
+}
+
+.containerQr img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+}
+
+.qrImageContainer{
+    display: flex;
+    width: 15rem;
+    height: 15rem;
+    background-color: white;
+    border: 3px solid var(--color-green);
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden;
+}
+.qrImageContainer img{
+    padding: .5rem;
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.buttonGenerateQr{
+    background-color: var(--color-green);
+    color: var(--color-grey);
+}
+.buttondownload{
+    background-color: var(--color-grey);
+    color: var(--color-green);
+}
+.buttonGenerateQr:hover{
+    background-color: var(--color-grey);
+    color: var(--color-green);  
+    transition: all .6s ease;
+}
+
+
+
+/**Stylos scanner**/
+
+.buttonsScan{
+    display: flex;
+    max-height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-file-input,
+.buttonScanner, 
+.floating-button{
+  padding: 0;
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border: none;
+  margin: .5rem;
+  background-color: transparent;
+  transition: transform 0.3s ease; /* Agregar una transición suave */
+}
+
+.custom-file-input img,
+.buttonScanner img, 
+.floating-button-img {
+  width: 100%;
+  height: 100%;
+}
+
+input[type="file"] {
+  position: absolute;
+  font-size: 0px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+
+.custom-file-input:hover,
+.buttonScanner:hover {
+  transform: scale(1.1);
+}
+  
+  
+  #qr-canvas.show-flashlight-button + .floating-button {
+    display: block;
+  }
+  
+
+.none{
+    display: none;
+}
+
+.img-fluid{
+    margin: 0;
+    padding: 0;
+    display: none;
+    max-width:100%;
+    height:auto;
+    z-index: 1;
+}
+
+.openLink{    
+    width: 9rem;   
+    text-decoration:none;
+    background-color:transparent;
+    font-weight: bolder;
+    color: var(--color-green); 
+    border: 1px solid var(--color-green); 
+    font-size: 1rem;
+}
+
+.outputSpan {
+    display: block;
+    margin-top: .3rem;
+    overflow-wrap: break-word; 
+    width: 100%;
+}
+.img-fluid {
+    margin: 0 auto;
+}
+
+@media (max-width: 850px) {
+
+    .encryptConteiner, .QRConteiner{
+        width: 32rem;
+
+    }
+    button{
+        width: 10rem;
+        height: 2rem;  
+        padding: .2rem;  
+    }
+
+    .QRConteiner p, .encryptConteiner p{
+        font-size: 1.5rem;
+    }
+
+    .scanConteiner{
+        width: 27rem;
+        height: 9rem;
+    }
+
+    .input, .output{
+        width: 27rem;
+        height: 6rem;
+        font-size: 1.5rem;
+    }
+
+    .containerQr{
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .qrImageContainer{
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .selectQr{
+        width: 7rem;
+        height: 2rem; 
+        font-size: 1rem;
+    }
+    
+    
+    .inputQr{
+        width: 23rem;
+        height: 2rem; 
+        font-size: 1.2rem;
+
+    }
+
+    .outputQr{
+        width: 30rem;
+        height: 2rem;
+        font-size: 1rem;    
+    }
+    
+    .outputQrSpan{
+        width: 22rem;
+        overflow: hidden;        
+        font-size: 1rem;
+    }
+    
+    .outputQr a{ 
+        width: 8rem;
+        overflow: hidden;
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .encryptConteiner, .QRConteiner{
+        width:22.86rem;
+        height: 32rem;
+
+    }
+    button{
+        width: 10rem;
+        height: 2rem;  
+        padding: .2rem;  
+    }
+
+    .QRConteiner p, .encryptConteiner p{
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .scanConteiner{
+        width: 20rem;
+    }
+
+    .input, .output{
+        width: 20rem;
+        font-size: 1.5rem;
+        border: 2px solid var(--color-green);
+    }
+
+    .selectUrl{  
+        width: 20;      
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .selectQr{
+        width: 6.5rem;
+        height: 1.5rem; 
+        font-size: 1rem;
+        margin-bottom: .3rem;
+        border: 2px solid var(--color-green);
+    }
+
+    .selectQr:focus {
+        border: 2px solid yellow;
+    }
+    
+    .selectQr:focus + .inputQr{
+        border: 2px solid var(--color-green);
+    }
+    .selectQr.focused{
+        border: 2px solid var(--color-green);
+    }
+    
+    
+    .inputQr{
+        width: 20rem;
+        height: 4rem;
+        overflow-y: auto; 
+        overflow-x: hidden;
+        word-wrap: break-word;
+        font-size: 1rem;       
+        border: 2px solid var(--color-green);
+    }
+
+    .inputQr:focus{
+        border: 2px solid yellow;
+    }
+
+    .inputQr::placeholder{
+        font-size: 1rem;
+    }
+
+    .outputQr{
+        width: 20rem;
+        height: 5rem;
+        font-size: 1rem; 
+        justify-content: center;
+        flex-wrap: wrap; 
+        border: 2px solid var(--color-green);  
+    }
+    
+    .outputQrSpan{
+        width: 20rem;
+        max-height: 3rem;
+        font-size: 1rem;
+        overflow-y: auto; 
+        overflow-x: hidden;
+        word-wrap: break-word;
+        
+    }
+    
+    .outputQr a{ 
+        width: 6rem;
+        font-size: 1rem;
+    }
+
+}
+@media screen and (orientation: portrait) and (max-width: 400px) {
+    .encryptConteiner, .QRConteiner {
+        width: 18rem;
+        height: 32rem;
+    }
+
+    button {
+        margin-top: 1rem;
+        width: 10rem;
+        height: 2rem;
+        padding: .2rem;
+    }
+
+    #stopButton {
+        margin: 0;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .goEncrypt {
+        margin: 0;
+    }
+
+    .QRConteiner p, .encryptConteiner p {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .scanConteiner {
+        width: 16rem;
+    }
+
+    .input, .output {
+        width: 16rem;
+        font-size: 1rem;
+    }
+
+    .inputQr {
+        width: 16rem;
+        height: 4rem;
+        font-size: 1rem;
+    }
+
+    .outputQr {
+        width: 16rem;
+    }
+
+    .outputQrSpan {
+        width: 16rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-height: 590px) {
+
+    .encryptConteiner, .QRConteiner {
+        width: 18rem;
+        height: 32rem;
+        justify-content: flex-start;
+    }
+
+    button {
+        margin-top: .5rem;
+        width: 10rem;
+        height: 2rem;
+        padding: .2rem;
+    }
+
+    #stopButton {
+        margin: 0;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .goEncrypt {
+        margin: 0;
+    }
+
+    .QRConteiner p, .encryptConteiner p {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .scanConteiner {
+        width: 16rem;
+        height: 8rem;
+    }
+
+    .input, .output {
+        width: 16rem;
+        font-size: 1rem;
+        height: 4rem;
+    }
+
+    .inputQr {
+        width: 16rem;
+        height: 4rem;
+        font-size: 1rem;
+    }
+
+    .outputQr {
+        width: 16rem;
+        height: 4rem;
+    }
+
+    .outputQrSpan {
+        width: 16rem;
+        font-size: 1rem;
+    }
+}
+
+
