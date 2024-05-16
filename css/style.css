@@ -19,7 +19,7 @@
 body {
     margin: 0;
     overflow: hidden;
-    height: 100vh;
+    overflow-y: auto;
     width: 100vw;
     background: black;
     position: relative;
@@ -70,9 +70,6 @@ button{
     align-items: center;
     height: 100vh;
   }
-      
-
-
 .encryptConteiner{
     position: absolute;
     display: flex;
@@ -89,7 +86,6 @@ button{
     justify-content: space-around;
     transition: background-color 0.5s ease;
 }
-
 .QRConteiner{
     position: absolute;
     width: 50rem;
@@ -106,14 +102,11 @@ button{
     justify-content: space-around;
     transition: background-color 0.5s ease;
 }
-
 .QRConteiner p, .encryptConteiner p {
     color: white;
     font-size: 2rem;
     font-weight: bolder;
 }
-
-
 .input{
     width: 38rem;
     height: 6rem;
@@ -124,7 +117,6 @@ button{
     border: 3px solid var(--color-green);
     resize: none;
 }
-
 .output {
     width: 38rem;
     height: 6rem;
@@ -142,66 +134,48 @@ button{
     overflow-y: auto; 
     overflow-x: hidden;
 }
-
-
 .input:focus{
     outline: none;
     border: 3px solid yellow;
 }
-
-
-
 .input::-webkit-scrollbar, .output::-webkit-scrollbar {
     width: 3px; 
 }
-
 .input::-webkit-scrollbar-track, .output::-webkit-scrollbar-track {
     background: transparent;
 }
-
 .input::-webkit-scrollbar-thumb, .output::-webkit-scrollbar-thumb {
     background-color: var(--color-green); 
     cursor: pointer;
 }
-
 .encrypt, .copy{
     background-color: var(--color-grey);
     color: var(--color-green);
 }
-
 .encrypt:hover, .copy:hover, .encrypt:focus, .copy:focus{
     background-color: var(--color-green);
     color: var(--color-grey);
     font-weight: bolder;
     transition: all .6s ease;
 }
-
 .decrypt{
     background-color: var(--color-green);
     color: var(--color-grey);
 }
-
 .decrypt:hover, .decrypt:focus{
     background-color: var(--color-grey);
     color: var(--color-green);
     transition: all .6s ease;
 }
-
 .encrypt:active, .decrypt:active, .copy:active{
-    background-color: yellow;
-    
+    background-color: yellow;    
 }
-
-
-
 /**CSS QR generator**/
-
 .selectUrl{
     display: flex;
     justify-content: center;
 
 } 
-
 .selectQr{
     margin: 0;
     width: 9rem;
@@ -214,8 +188,6 @@ button{
     font-family: 'Courier New', Courier, monospace;
     background-color: #333333b3;
 }
-
-
 .inputQr{
     margin: 0;
     width: 32rem;
@@ -227,30 +199,23 @@ button{
     font-size: 1.5rem;
     background-color: #333333b3; 
     font-family: "Courier New", Consolas, "Lucida Console", Courier, monospace;  
-
 }
-
 .selectQr:focus {
     border: 3px solid yellow;
     border-right: 0;
 }
-
 .selectQr:focus + .inputQr{
     border: 3px solid yellow;
     border-left: 0;
 }
-
-
 .inputQr:focus  {
     border: 3px solid yellow;
     border-left: 0;
 }
-
 .selectQr.focused{
     border: 3px solid yellow;
     border-right: 0;
 }
-
 .outputQr{
     display: flex;
     justify-content: flex-end;
@@ -263,15 +228,12 @@ button{
     background-color: #333333b3;
     align-items: center;
     overflow: hidden;
-
 }
-
 .outputQrSpan{
     width: 32rem;    
     overflow: hidden;
     font-size: 1rem;
 }
-
 .outputQr a{ 
     display: none;
     width: 9rem;   
@@ -284,9 +246,7 @@ button{
     transition: all .6s ease;
     font-size: 1rem;
     overflow: hidden;
-
 }
-
 .containerQr {
     display: none;
     width: 15rem;
@@ -298,19 +258,16 @@ button{
     z-index: 9999;
     overflow: hidden;
 }
-
 .containerQr canvas {
     max-width: 100%; /* Esto asegura que el canvas no sea más ancho que su contenedor */
     max-height: 100%; /* Esto asegura que el canvas no sea más alto que su contenedor */
     display: block; /* Para eliminar el espacio en blanco debajo del canvas */
 }
-
 .containerQr img {
     width: 100%; 
     height: 100%;
     object-fit: contain;
 }
-
 .qrImageContainer{
     display: flex;
     width: 15rem;
@@ -327,8 +284,6 @@ button{
     height: 100%;
     object-fit: contain;
 }
-
-
 .buttonGenerateQr{
     background-color: var(--color-green);
     color: var(--color-grey);
@@ -342,18 +297,13 @@ button{
     color: var(--color-green);  
     transition: all .6s ease;
 }
-
-
-
 /**Stylos scanner**/
-
 .buttonsScan{
     display: flex;
     max-height: 50px;
     justify-content: center;
     align-items: center;
 }
-
 .custom-file-input,
 .buttonScanner, 
 .floating-button{
@@ -367,14 +317,12 @@ button{
   background-color: transparent;
   transition: transform 0.3s ease; /* Agregar una transición suave */
 }
-
 .custom-file-input img,
 .buttonScanner img, 
 .floating-button-img {
   width: 100%;
   height: 100%;
 }
-
 input[type="file"] {
   position: absolute;
   font-size: 0px;
@@ -382,23 +330,16 @@ input[type="file"] {
   right: 0;
   top: 0;
 }
-
-
 .custom-file-input:hover,
 .buttonScanner:hover {
   transform: scale(1.1);
-}
-  
-  
-  #qr-canvas.show-flashlight-button + .floating-button {
+}  
+#qr-canvas.show-flashlight-button + .floating-button {
     display: block;
-  }
-  
-
+}
 .none{
     display: none;
 }
-
 .img-fluid{
     margin: 0;
     padding: 0;
@@ -407,7 +348,6 @@ input[type="file"] {
     height:auto;
     z-index: 1;
 }
-
 .openLink{    
     width: 9rem;   
     text-decoration:none;
@@ -417,7 +357,6 @@ input[type="file"] {
     border: 1px solid var(--color-green); 
     font-size: 1rem;
 }
-
 .outputSpan {
     display: block;
     margin-top: .3rem;
@@ -427,7 +366,21 @@ input[type="file"] {
 .img-fluid {
     margin: 0 auto;
 }
-
+.aFooter{
+    background-color: #3333337e;
+    width: 150px;
+    display: flex;
+    margin: auto;
+    color: #32ff32;
+    text-align: end;
+    justify-content: center;
+    align-items: end;
+    border-radius: .3rem;
+    padding: .3rem;
+}
+.aFooter img{
+    margin-left: .5rem;
+}
 @media (max-width: 850px) {
 
     .encryptConteiner, .QRConteiner{
